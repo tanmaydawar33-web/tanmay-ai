@@ -33,7 +33,7 @@
     .app {
         width: min(1100px, 96vw);
         height: min(900px, 94vh);
-        background: white;
+        background: #ffffff;
         border: 1px solid #e5e7eb;
         border-radius: 24px;
         box-shadow: 0 18px 60px rgba(0, 0, 0, 0.10);
@@ -42,6 +42,8 @@
         overflow: hidden;
     }
 
+    /* HEADER */
+
     header {
         height: 72px;
         padding: 0 22px;
@@ -49,7 +51,7 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        background: white;
+        background: #ffffff;
     }
 
     .brand {
@@ -109,12 +111,16 @@
         background: #f3f4f6;
     }
 
+    /* CHAT */
+
     #messages {
         flex: 1;
         overflow-y: auto;
         padding: 30px 24px;
         scroll-behavior: smooth;
     }
+
+    /* WELCOME */
 
     .welcome {
         max-width: 700px;
@@ -133,7 +139,6 @@
         align-items: center;
         justify-content: center;
         font-size: 34px;
-        font-weight: 700;
         box-shadow: 0 12px 30px rgba(17, 24, 39, 0.18);
     }
 
@@ -162,7 +167,7 @@
         padding: 16px;
         border: 1px solid #e2e8f0;
         border-radius: 14px;
-        background: white;
+        background: #ffffff;
         color: #334155;
         cursor: pointer;
         text-align: left;
@@ -186,6 +191,8 @@
         color: #64748b;
         font-size: 12px;
     }
+
+    /* MESSAGE */
 
     .message {
         display: flex;
@@ -227,13 +234,13 @@
         align-items: center;
         justify-content: center;
         font-size: 17px;
-        font-weight: 700;
     }
 
     .bubble {
         padding: 13px 16px;
         border-radius: 16px;
         line-height: 1.65;
+        white-space: pre-wrap;
         overflow-wrap: anywhere;
         font-size: 15px;
     }
@@ -248,92 +255,9 @@
         background: #111827;
         color: white;
         border-bottom-right-radius: 5px;
-        white-space: pre-wrap;
     }
 
-    .assistant .bubble h1,
-    .assistant .bubble h2,
-    .assistant .bubble h3 {
-        margin: 0 0 10px;
-        line-height: 1.3;
-    }
-
-    .assistant .bubble h1 {
-        font-size: 22px;
-    }
-
-    .assistant .bubble h2 {
-        font-size: 19px;
-    }
-
-    .assistant .bubble h3 {
-        font-size: 17px;
-    }
-
-    .assistant .bubble p {
-        margin: 0 0 10px;
-    }
-
-    .assistant .bubble p:last-child {
-        margin-bottom: 0;
-    }
-
-    .assistant .bubble ul,
-    .assistant .bubble ol {
-        margin: 8px 0;
-        padding-left: 24px;
-    }
-
-    .assistant .bubble li {
-        margin: 4px 0;
-    }
-
-    .assistant .bubble strong {
-        font-weight: 700;
-    }
-
-    .assistant .bubble code {
-        padding: 2px 5px;
-        border-radius: 5px;
-        background: #e2e8f0;
-        font-family: Consolas, monospace;
-        font-size: 13px;
-    }
-
-    .assistant .bubble pre {
-        margin: 12px 0;
-        padding: 13px;
-        border-radius: 10px;
-        background: #0f172a;
-        color: #e2e8f0;
-        overflow-x: auto;
-    }
-
-    .assistant .bubble pre code {
-        padding: 0;
-        background: transparent;
-        color: inherit;
-        white-space: pre;
-    }
-
-    .assistant .bubble table {
-        width: 100%;
-        border-collapse: collapse;
-        margin: 12px 0;
-        font-size: 13px;
-    }
-
-    .assistant .bubble th,
-    .assistant .bubble td {
-        border: 1px solid #cbd5e1;
-        padding: 7px 9px;
-        text-align: left;
-    }
-
-    .assistant .bubble th {
-        font-weight: 700;
-        background: #e2e8f0;
-    }
+    /* THINKING */
 
     .thinking {
         display: flex;
@@ -369,6 +293,8 @@
             opacity: 1;
         }
     }
+
+    /* INPUT */
 
     .input-area {
         padding: 14px 18px 17px;
@@ -437,6 +363,8 @@
         color: #94a3b8;
         font-size: 10px;
     }
+
+    /* MOBILE */
 
     @media (max-width: 600px) {
 
@@ -585,6 +513,7 @@
 
 </header>
 
+
 <div id="messages">
 
     <div class="welcome" id="welcome">
@@ -614,6 +543,7 @@
 
             </button>
 
+
             <button
                 class="suggestion"
                 onclick="useSuggestion('Help me write something professionally.')">
@@ -628,6 +558,7 @@
 
             </button>
 
+
             <button
                 class="suggestion"
                 onclick="useSuggestion('Help me understand this programming problem.')">
@@ -641,6 +572,7 @@
                 </span>
 
             </button>
+
 
             <button
                 class="suggestion"
@@ -661,6 +593,7 @@
     </div>
 
 </div>
+
 
 <div class="input-area">
 
@@ -793,11 +726,13 @@ function addMessage(text, type) {
     message.className =
         "message " + type;
 
+
     const content =
         document.createElement("div");
 
     content.className =
         "message-content";
+
 
     if (type === "assistant") {
 
@@ -812,22 +747,16 @@ function addMessage(text, type) {
         content.appendChild(avatar);
     }
 
+
     const bubble =
         document.createElement("div");
 
     bubble.className =
         "bubble";
 
-    if (type === "assistant") {
+    bubble.textContent =
+        text;
 
-        bubble.innerHTML =
-            formatAIResponse(text);
-
-    } else {
-
-        bubble.textContent =
-            text;
-    }
 
     content.appendChild(bubble);
 
@@ -841,331 +770,191 @@ function addMessage(text, type) {
 }
 
 
-function formatAIResponse(text) {
-
-    let value =
-        String(text || "");
-
-    value =
-        escapeHTML(value);
-
-    value =
-        value.replace(
-            /```([\s\S]*?)```/g,
-            function(match, code) {
-
-                return "<pre><code>" +
-                    code.trim() +
-                    "</code></pre>";
-
-```
-        }
-    );
-
-value =
-    value.replace(
-        /^### (.*)$/gm,
-        "<h3>$1</h3>"
-    );
-
-value =
-    value.replace(
-        /^## (.*)$/gm,
-        "<h2>$1</h2>"
-    );
-
-value =
-    value.replace(
-        /^# (.*)$/gm,
-        "<h1>$1</h1>"
-    );
-
-value =
-    value.replace(
-        /\*\*(.*?)\*\*/g,
-        "<strong>$1</strong>"
-    );
-
-value =
-    value.replace(
-        /`([^`]+)`/g,
-        "<code>$1</code>"
-    );
-
-value =
-    value.replace(
-        /^\s*[-*] (.*)$/gm,
-        "<li>$1</li>"
-    );
-
-value =
-    value.replace(
-        /(<li>.*<\/li>\n?)+/g,
-        "<ul>$&</ul>"
-    );
-
-const lines =
-    value.split("\n");
-
-let output = "";
-let paragraph = [];
-
-function flushParagraph() {
-
-    if (paragraph.length === 0) {
-        return;
-    }
-
-    const content =
-        paragraph.join("<br>");
-
-    output +=
-        "<p>" + content + "</p>";
-
-    paragraph = [];
-}
-
-for (let i = 0; i < lines.length; i++) {
-
-    const line =
-        lines[i].trim();
-
-    if (
-        line.startsWith("<h1>") ||
-        line.startsWith("<h2>") ||
-        line.startsWith("<h3>") ||
-        line.startsWith("<ul>") ||
-        line.startsWith("<pre>")
-    ) {
-
-        flushParagraph();
-
-        output += line;
-
-    } else if (line === "") {
-
-        flushParagraph();
-
-    } else {
-
-        paragraph.push(line);
-    }
-}
-
-flushParagraph();
-
-return output;
-```
-
-}
-
-function escapeHTML(text) {
-
-```
-const div =
-    document.createElement("div");
-
-div.textContent =
-    text;
-
-return div.innerHTML;
-```
-
-}
-
 function addThinkingMessage() {
 
-```
-const messages =
-    document.getElementById("messages");
+    const messages =
+        document.getElementById("messages");
 
-const message =
-    document.createElement("div");
+    const message =
+        document.createElement("div");
 
-message.className =
-    "message assistant";
+    message.className =
+        "message assistant";
 
-const content =
-    document.createElement("div");
 
-content.className =
-    "message-content";
+    const content =
+        document.createElement("div");
 
-const avatar =
-    document.createElement("div");
+    content.className =
+        "message-content";
 
-avatar.className =
-    "assistant-avatar";
 
-avatar.textContent = "T";
+    const avatar =
+        document.createElement("div");
 
-const bubble =
-    document.createElement("div");
+    avatar.className =
+        "assistant-avatar";
 
-bubble.className =
-    "bubble thinking";
+    avatar.textContent = "T";
 
-bubble.innerHTML =
-    '<span class="thinking-dot"></span>' +
-    '<span class="thinking-dot"></span>' +
-    '<span class="thinking-dot"></span>';
 
-content.appendChild(avatar);
+    const bubble =
+        document.createElement("div");
 
-content.appendChild(bubble);
+    bubble.className =
+        "bubble thinking";
 
-message.appendChild(content);
 
-messages.appendChild(message);
+    bubble.innerHTML =
+        '<span class="thinking-dot"></span>' +
+        '<span class="thinking-dot"></span>' +
+        '<span class="thinking-dot"></span>';
 
-scrollToBottom();
 
-return message;
-```
+    content.appendChild(avatar);
 
+    content.appendChild(bubble);
+
+    message.appendChild(content);
+
+    messages.appendChild(message);
+
+    scrollToBottom();
+
+    return message;
 }
+
 
 function removeWelcome() {
 
-```
-const welcome =
-    document.getElementById("welcome");
+    const welcome =
+        document.getElementById("welcome");
 
-if (welcome) {
-    welcome.remove();
+    if (welcome) {
+        welcome.remove();
+    }
 }
-```
 
-}
 
 function useSuggestion(text) {
 
-```
-const input =
-    document.getElementById("userInput");
+    const input =
+        document.getElementById("userInput");
 
-input.value =
-    text;
+    input.value = text;
 
-input.focus();
-```
-
+    input.focus();
 }
+
 
 function newChat() {
 
-```
-const messages =
-    document.getElementById("messages");
+    const messages =
+        document.getElementById("messages");
 
-messages.innerHTML = `
-    <div class="welcome" id="welcome">
+    messages.innerHTML = `
+        <div class="welcome" id="welcome">
 
-        <div class="welcome-logo">T</div>
+            <div class="welcome-logo">T</div>
 
-        <h2>Welcome to Tanmay AI</h2>
+            <h2>Welcome to Tanmay AI</h2>
 
-        <p>
-            Your professional AI assistant for learning,
-            coding, writing, ideas, and everyday questions.
-        </p>
+            <p>
+                Your professional AI assistant for learning,
+                coding, writing, ideas, and everyday questions.
+            </p>
 
-        <div class="suggestions">
+            <div class="suggestions">
 
-            <button
-                class="suggestion"
-                onclick="useSuggestion('Explain a difficult topic to me step by step.')">
+                <button
+                    class="suggestion"
+                    onclick="useSuggestion('Explain a difficult topic to me step by step.')">
 
-                <span class="suggestion-title">
-                    📚 Explain a topic
-                </span>
+                    <span class="suggestion-title">
+                        📚 Explain a topic
+                    </span>
 
-                <span class="suggestion-text">
-                    Learn something clearly
-                </span>
+                    <span class="suggestion-text">
+                        Learn something clearly
+                    </span>
 
-            </button>
+                </button>
 
-            <button
-                class="suggestion"
-                onclick="useSuggestion('Help me write something professionally.')">
+                <button
+                    class="suggestion"
+                    onclick="useSuggestion('Help me write something professionally.')">
 
-                <span class="suggestion-title">
-                    ✍️ Help me write
-                </span>
+                    <span class="suggestion-title">
+                        ✍️ Help me write
+                    </span>
 
-                <span class="suggestion-text">
-                    Improve or create text
-                </span>
+                    <span class="suggestion-text">
+                        Improve or create text
+                    </span>
 
-            </button>
+                </button>
 
-            <button
-                class="suggestion"
-                onclick="useSuggestion('Help me understand this programming problem.')">
+                <button
+                    class="suggestion"
+                    onclick="useSuggestion('Help me understand this programming problem.')">
 
-                <span class="suggestion-title">
-                    💻 Help with coding
-                </span>
+                    <span class="suggestion-title">
+                        💻 Help with coding
+                    </span>
 
-                <span class="suggestion-text">
-                    Debug and understand code
-                </span>
+                    <span class="suggestion-text">
+                        Debug and understand code
+                    </span>
 
-            </button>
+                </button>
 
-            <button
-                class="suggestion"
-                onclick="useSuggestion('Give me some useful ideas for a project.')">
+                <button
+                    class="suggestion"
+                    onclick="useSuggestion('Give me some useful ideas for a project.')">
 
-                <span class="suggestion-title">
-                    💡 Get ideas
-                </span>
+                    <span class="suggestion-title">
+                        💡 Get ideas
+                    </span>
 
-                <span class="suggestion-text">
-                    Brainstorm something new
-                </span>
+                    <span class="suggestion-text">
+                        Brainstorm something new
+                    </span>
 
-            </button>
+                </button>
+
+            </div>
 
         </div>
+    `;
 
-    </div>
-`;
-
-document
-    .getElementById("userInput")
-    .focus();
-```
-
+    document
+        .getElementById("userInput")
+        .focus();
 }
+
 
 function scrollToBottom() {
 
-```
-const messages =
-    document.getElementById("messages");
+    const messages =
+        document.getElementById("messages");
 
-messages.scrollTop =
-    messages.scrollHeight;
-```
-
+    messages.scrollTop =
+        messages.scrollHeight;
 }
 
+
 document
-.getElementById("userInput")
-.addEventListener(
-"keydown",
-function(event) {
+    .getElementById("userInput")
+    .addEventListener(
+        "keydown",
+        function(event) {
 
-```
-        if (event.key === "Enter") {
-            sendMessage();
+            if (event.key === "Enter") {
+                sendMessage();
+            }
+
         }
-
-    }
-);
-```
+    );
 
 </script>
 
