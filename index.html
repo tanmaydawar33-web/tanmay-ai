@@ -5,7 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#111827">
-<meta name="description" content="Tanmay AI - Your intelligent AI assistant">
+<meta name="description" content="Tanmay AI - Professional AI assistant">
 <title>Tanmay AI</title>
 
 <style>
@@ -14,33 +14,31 @@
 }
 
 :root {
-    --bg: #f4f7fb;
-    --sidebar: #101828;
-    --sidebar2: #172033;
-    --panel: #ffffff;
-    --panel-soft: #f8fafc;
-    --text: #101828;
+    --bg: #f5f7fb;
+    --surface: #ffffff;
+    --surface2: #f8fafc;
+    --text: #111827;
     --muted: #667085;
     --border: #e4e7ec;
+    --sidebar: #101828;
+    --sidebar-text: #d0d5dd;
+    --sidebar-muted: #98a2b3;
+    --accent: #6366f1;
+    --accent2: #06b6d4;
+    --success: #22c55e;
     --user: #111827;
     --assistant: #f2f4f7;
-    --accent: #7c3aed;
-    --accent2: #06b6d4;
-    --pink: #ec4899;
-    --green: #22c55e;
 }
 
 body.dark {
-    --bg: #070b14;
-    --sidebar: #080d18;
-    --sidebar2: #111827;
-    --panel: #0f172a;
-    --panel-soft: #111c30;
+    --bg: #080b12;
+    --surface: #0f172a;
+    --surface2: #151e2f;
     --text: #f8fafc;
     --muted: #98a2b3;
-    --border: #243044;
-    --user: #f8fafc;
-    --assistant: #172033;
+    --border: #263247;
+    --assistant: #182235;
+    --user: #e5e7eb;
 }
 
 html,
@@ -54,7 +52,6 @@ body {
 }
 
 body {
-    display: flex;
     overflow: hidden;
 }
 
@@ -64,8 +61,6 @@ body {
     width: 100%;
     height: 100vh;
     display: flex;
-    position: relative;
-    overflow: hidden;
 }
 
 /* SIDEBAR */
@@ -73,98 +68,100 @@ body {
 .sidebar {
     width: 260px;
     flex: 0 0 260px;
+    height: 100vh;
     background:
-        radial-gradient(circle at 20% 10%, rgba(124,58,237,0.35), transparent 30%),
-        radial-gradient(circle at 90% 80%, rgba(6,182,212,0.20), transparent 30%),
-        var(--sidebar);
+        linear-gradient(180deg, #101828 0%, #111827 100%);
     color: white;
+    padding: 18px;
     display: flex;
     flex-direction: column;
-    padding: 18px;
-    position: relative;
-    z-index: 20;
+    z-index: 30;
 }
 
-.sidebar-brand {
+.brand {
     display: flex;
     align-items: center;
     gap: 11px;
-    padding: 4px 4px 20px;
+    margin-bottom: 20px;
 }
 
-.sidebar-logo {
+.logo {
     width: 42px;
     height: 42px;
-    border-radius: 13px;
-    background: linear-gradient(135deg, #8b5cf6, #06b6d4);
+    border-radius: 12px;
+    background: linear-gradient(135deg, #6366f1, #06b6d4);
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 900;
-    font-size: 19px;
-    box-shadow: 0 8px 25px rgba(124,58,237,0.35);
+    font-size: 18px;
+    box-shadow: 0 8px 25px rgba(99,102,241,0.25);
 }
 
-.sidebar-brand strong {
-    display: block;
+.brand strong {
     font-size: 17px;
-}
-
-.sidebar-brand span {
     display: block;
-    color: #98a2b3;
-    font-size: 11px;
-    margin-top: 2px;
 }
 
-.new-chat-sidebar {
-    width: 100%;
-    height: 46px;
-    border: 1px solid rgba(255,255,255,0.12);
-    border-radius: 13px;
-    background: rgba(255,255,255,0.08);
+.brand small {
+    color: var(--sidebar-muted);
+    font-size: 10px;
+}
+
+.new-chat {
+    height: 45px;
+    border: 1px solid rgba(255,255,255,0.13);
+    border-radius: 12px;
+    background: rgba(255,255,255,0.07);
     color: white;
     cursor: pointer;
     font-size: 13px;
     font-weight: 700;
-    transition: 0.2s;
+    transition: 0.18s;
 }
 
-.new-chat-sidebar:hover {
-    background: rgba(255,255,255,0.14);
-    transform: translateY(-1px);
+.new-chat:hover {
+    background: rgba(255,255,255,0.13);
 }
 
-.sidebar-section {
-    margin-top: 28px;
-}
-
-.sidebar-label {
-    color: #98a2b3;
+.nav-label {
+    color: var(--sidebar-muted);
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 1px;
-    margin: 0 8px 9px;
+    margin: 27px 8px 9px;
 }
 
-.sidebar-item {
+.nav-item {
+    width: 100%;
+    height: 43px;
+    border: none;
+    border-radius: 11px;
+    background: transparent;
+    color: var(--sidebar-text);
     display: flex;
     align-items: center;
     gap: 11px;
-    padding: 11px 10px;
-    border-radius: 11px;
-    color: #d0d5dd;
+    padding: 0 11px;
+    cursor: pointer;
+    text-align: left;
     font-size: 13px;
     margin-bottom: 4px;
+    transition: 0.18s;
 }
 
-.sidebar-item.active {
-    background: rgba(255,255,255,0.09);
+.nav-item:hover {
+    background: rgba(255,255,255,0.07);
     color: white;
 }
 
-.sidebar-icon {
-    width: 25px;
+.nav-item.active {
+    background: rgba(99,102,241,0.20);
+    color: white;
+}
+
+.nav-icon {
+    width: 24px;
     text-align: center;
     font-size: 15px;
 }
@@ -173,22 +170,22 @@ body {
     margin-top: auto;
 }
 
-.creator-card {
+.creator {
     padding: 13px;
-    border-radius: 14px;
-    background: rgba(255,255,255,0.07);
+    border-radius: 13px;
+    background: rgba(255,255,255,0.06);
     border: 1px solid rgba(255,255,255,0.08);
 }
 
-.creator-card small {
-    color: #98a2b3;
+.creator span {
     display: block;
+    color: var(--sidebar-muted);
     font-size: 10px;
     margin-bottom: 4px;
 }
 
-.creator-card strong {
-    font-size: 13px;
+.creator strong {
+    font-size: 12px;
 }
 
 /* MAIN */
@@ -196,9 +193,10 @@ body {
 .main {
     flex: 1;
     min-width: 0;
+    height: 100vh;
     display: flex;
     flex-direction: column;
-    background: var(--panel);
+    background: var(--surface);
 }
 
 /* TOPBAR */
@@ -206,12 +204,12 @@ body {
 .topbar {
     height: 68px;
     flex: 0 0 68px;
+    border-bottom: 1px solid var(--border);
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 0 22px;
-    border-bottom: 1px solid var(--border);
-    background: var(--panel);
+    background: var(--surface);
 }
 
 .mobile-menu {
@@ -219,73 +217,64 @@ body {
     width: 40px;
     height: 40px;
     border: 1px solid var(--border);
-    border-radius: 11px;
-    background: var(--panel-soft);
+    border-radius: 10px;
+    background: var(--surface2);
     color: var(--text);
     cursor: pointer;
-    font-size: 18px;
 }
 
-.top-title {
+.page-title {
     display: flex;
     align-items: center;
     gap: 10px;
 }
 
-.top-title-logo {
+.page-title-logo {
     width: 34px;
     height: 34px;
     border-radius: 10px;
-    background: linear-gradient(135deg, #7c3aed, #06b6d4);
+    background: linear-gradient(135deg, #6366f1, #06b6d4);
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 15px;
+    font-size: 14px;
     font-weight: 900;
 }
 
-.top-title strong {
-    font-size: 15px;
+.page-title strong {
+    display: block;
+    font-size: 14px;
 }
 
-.top-title small {
-    display: block;
+.page-title small {
     color: var(--muted);
     font-size: 10px;
-    margin-top: 1px;
 }
 
-.top-actions {
+.actions {
     display: flex;
     gap: 8px;
 }
 
-.top-button {
+.action-btn {
     height: 38px;
     min-width: 38px;
-    padding: 0 11px;
+    padding: 0 12px;
     border: 1px solid var(--border);
     border-radius: 10px;
-    background: var(--panel-soft);
+    background: var(--surface2);
     color: var(--text);
     cursor: pointer;
-    font-size: 13px;
-    transition: 0.18s;
+    font-size: 12px;
 }
 
-.top-button:hover {
-    transform: translateY(-1px);
-    border-color: var(--muted);
-}
-
-/* CHAT */
+/* CONTENT */
 
 #messages {
     flex: 1;
     overflow-y: auto;
-    padding: 28px 7%;
-    scroll-behavior: smooth;
+    padding: 30px 7%;
 }
 
 #messages::-webkit-scrollbar {
@@ -297,52 +286,41 @@ body {
     border-radius: 20px;
 }
 
-/* WELCOME */
+/* HOME */
 
-.welcome {
-    max-width: 850px;
-    margin: 40px auto 30px;
+.home {
+    max-width: 900px;
+    margin: 35px auto;
 }
 
 .hero {
     text-align: center;
-    padding: 15px 0 22px;
+    margin-bottom: 30px;
 }
 
 .hero-logo {
-    width: 82px;
-    height: 82px;
-    margin: 0 auto 20px;
-    border-radius: 25px;
-    background: linear-gradient(135deg, #7c3aed, #06b6d4, #ec4899);
-    background-size: 200% 200%;
-    animation: gradientMove 5s ease infinite;
+    width: 78px;
+    height: 78px;
+    margin: 0 auto 18px;
+    border-radius: 23px;
+    background: linear-gradient(135deg, #6366f1, #06b6d4);
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
-    font-size: 36px;
+    font-size: 34px;
     font-weight: 900;
-    box-shadow:
-        0 15px 45px rgba(124,58,237,0.25),
-        0 5px 20px rgba(6,182,212,0.15);
-}
-
-@keyframes gradientMove {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
+    box-shadow: 0 15px 40px rgba(99,102,241,0.22);
 }
 
 .hero h1 {
     margin: 0;
-    font-size: clamp(30px, 5vw, 46px);
-    letter-spacing: -1.7px;
-    line-height: 1.1;
+    font-size: 42px;
+    letter-spacing: -1.5px;
 }
 
 .hero h1 span {
-    background: linear-gradient(90deg, #7c3aed, #06b6d4, #ec4899);
+    background: linear-gradient(90deg, #6366f1, #06b6d4);
     -webkit-background-clip: text;
     background-clip: text;
     color: transparent;
@@ -350,72 +328,126 @@ body {
 
 .hero p {
     max-width: 620px;
-    margin: 15px auto 0;
+    margin: 13px auto;
     color: var(--muted);
     line-height: 1.7;
-    font-size: 15px;
+    font-size: 14px;
 }
 
-/* SUGGESTIONS */
-
-.suggestions {
+.cards {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
     gap: 13px;
-    margin-top: 25px;
 }
 
-.suggestion {
-    min-height: 105px;
-    padding: 17px;
+.card {
     border: 1px solid var(--border);
-    border-radius: 17px;
-    background: var(--panel-soft);
-    color: var(--text);
+    background: var(--surface2);
+    border-radius: 16px;
+    padding: 18px;
     cursor: pointer;
+    color: var(--text);
     text-align: left;
-    transition: 0.2s;
-    position: relative;
-    overflow: hidden;
+    transition: 0.18s;
 }
 
-.suggestion::after {
-    content: "";
-    position: absolute;
-    width: 70px;
-    height: 70px;
-    right: -25px;
-    bottom: -30px;
-    border-radius: 50%;
-    background: rgba(124,58,237,0.08);
+.card:hover {
+    transform: translateY(-2px);
+    border-color: #818cf8;
+    box-shadow: 0 10px 25px rgba(15,23,42,0.07);
 }
 
-.suggestion:hover {
-    transform: translateY(-3px);
-    border-color: #8b5cf6;
-    box-shadow: 0 12px 30px rgba(15,23,42,0.08);
+.card-icon {
+    font-size: 20px;
+    margin-bottom: 10px;
 }
 
-.suggestion-title {
+.card strong {
     display: block;
-    font-weight: 750;
     font-size: 14px;
-    margin-bottom: 7px;
+    margin-bottom: 5px;
 }
 
-.suggestion-text {
-    display: block;
+.card span {
     color: var(--muted);
     font-size: 12px;
     line-height: 1.5;
 }
 
-/* MESSAGES */
+/* SECTION PAGE */
+
+.section-page {
+    max-width: 900px;
+    margin: 25px auto;
+}
+
+.section-header {
+    margin-bottom: 25px;
+}
+
+.section-header .section-icon {
+    width: 55px;
+    height: 55px;
+    border-radius: 16px;
+    background: linear-gradient(135deg, #6366f1, #06b6d4);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 25px;
+    margin-bottom: 15px;
+}
+
+.section-header h2 {
+    margin: 0;
+    font-size: 28px;
+}
+
+.section-header p {
+    color: var(--muted);
+    line-height: 1.6;
+    font-size: 14px;
+}
+
+.tool-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+}
+
+.tool {
+    padding: 17px;
+    border: 1px solid var(--border);
+    border-radius: 15px;
+    background: var(--surface2);
+    color: var(--text);
+    cursor: pointer;
+    text-align: left;
+    transition: 0.18s;
+}
+
+.tool:hover {
+    border-color: #818cf8;
+    transform: translateY(-2px);
+}
+
+.tool strong {
+    display: block;
+    margin-bottom: 5px;
+    font-size: 14px;
+}
+
+.tool span {
+    color: var(--muted);
+    font-size: 12px;
+}
+
+/* CHAT MESSAGES */
 
 .message {
     display: flex;
     margin-bottom: 24px;
-    animation: messageIn 0.22s ease;
+    animation: appear 0.2s ease;
 }
 
 .message.user {
@@ -424,37 +456,35 @@ body {
 
 .message-content {
     display: flex;
-    gap: 11px;
+    gap: 10px;
     max-width: 850px;
-    align-items: flex-start;
 }
 
 .message.user .message-content {
     max-width: 75%;
 }
 
-.assistant-avatar {
+.avatar {
     width: 35px;
     height: 35px;
     flex: 0 0 35px;
     border-radius: 11px;
-    background: linear-gradient(135deg, #7c3aed, #06b6d4);
+    background: linear-gradient(135deg, #6366f1, #06b6d4);
     color: white;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: 900;
-    font-size: 14px;
-    box-shadow: 0 6px 16px rgba(124,58,237,0.18);
+    font-size: 13px;
 }
 
 .bubble {
     padding: 13px 16px;
-    border-radius: 17px;
+    border-radius: 16px;
     line-height: 1.7;
     font-size: 15px;
-    overflow-wrap: anywhere;
     white-space: pre-wrap;
+    overflow-wrap: anywhere;
 }
 
 .assistant .bubble {
@@ -464,7 +494,7 @@ body {
 }
 
 .user .bubble {
-    background: linear-gradient(135deg, #111827, #293548);
+    background: var(--user);
     color: white;
     border-bottom-right-radius: 5px;
 }
@@ -473,46 +503,43 @@ body {
 
 .thinking {
     display: flex;
-    align-items: center;
     gap: 5px;
-    min-width: 62px;
+    align-items: center;
     min-height: 25px;
 }
 
-.thinking-dot {
+.dot {
     width: 6px;
     height: 6px;
+    background: #6366f1;
     border-radius: 50%;
-    background: #7c3aed;
-    animation: thinking 1.2s infinite ease-in-out;
+    animation: pulse 1.1s infinite;
 }
 
-.thinking-dot:nth-child(2) {
+.dot:nth-child(2) {
     animation-delay: 0.15s;
 }
 
-.thinking-dot:nth-child(3) {
+.dot:nth-child(3) {
     animation-delay: 0.3s;
 }
 
-@keyframes thinking {
+@keyframes pulse {
     0%, 80%, 100% {
+        opacity: 0.3;
         transform: translateY(0);
-        opacity: 0.35;
     }
-
     40% {
-        transform: translateY(-5px);
         opacity: 1;
+        transform: translateY(-4px);
     }
 }
 
-@keyframes messageIn {
+@keyframes appear {
     from {
         opacity: 0;
-        transform: translateY(7px);
+        transform: translateY(5px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
@@ -522,27 +549,26 @@ body {
 /* INPUT */
 
 .input-area {
-    padding: 12px 7% 17px;
-    background: var(--panel);
     border-top: 1px solid var(--border);
+    padding: 12px 7% 16px;
+    background: var(--surface);
 }
 
 .input-box {
     max-width: 900px;
     margin: auto;
     display: flex;
-    align-items: center;
     gap: 8px;
-    padding: 5px 5px 5px 15px;
-    background: var(--panel-soft);
+    align-items: center;
+    padding: 5px 5px 5px 14px;
     border: 1px solid var(--border);
-    border-radius: 18px;
-    transition: 0.2s;
+    background: var(--surface2);
+    border-radius: 17px;
 }
 
 .input-box:focus-within {
-    border-color: #8b5cf6;
-    box-shadow: 0 0 0 4px rgba(124,58,237,0.08);
+    border-color: #818cf8;
+    box-shadow: 0 0 0 3px rgba(99,102,241,0.08);
 }
 
 input {
@@ -556,35 +582,22 @@ input {
     padding: 12px 4px;
 }
 
-input::placeholder {
-    color: var(--muted);
-}
-
 #sendButton {
-    width: 45px;
-    height: 45px;
-    flex: 0 0 45px;
+    width: 44px;
+    height: 44px;
     border: none;
-    border-radius: 14px;
-    background: linear-gradient(135deg, #7c3aed, #06b6d4);
+    border-radius: 13px;
+    background: linear-gradient(135deg, #6366f1, #06b6d4);
     color: white;
     cursor: pointer;
-    font-size: 18px;
-    transition: 0.18s;
-    box-shadow: 0 7px 18px rgba(124,58,237,0.22);
-}
-
-#sendButton:hover {
-    transform: translateY(-1px) scale(1.02);
+    font-size: 17px;
 }
 
 #sendButton:disabled {
-    opacity: 0.55;
-    cursor: wait;
-    transform: none;
+    opacity: 0.5;
 }
 
-.footer-note {
+.note {
     text-align: center;
     color: var(--muted);
     font-size: 10px;
@@ -593,7 +606,7 @@ input::placeholder {
 
 /* MOBILE */
 
-.mobile-overlay {
+.overlay {
     display: none;
 }
 
@@ -601,27 +614,23 @@ input::placeholder {
 
     .sidebar {
         position: fixed;
-        left: -280px;
+        left: -270px;
         top: 0;
         bottom: 0;
-        width: 260px;
         transition: left 0.25s ease;
-        box-shadow: 15px 0 40px rgba(0,0,0,0.2);
+        box-shadow: 15px 0 40px rgba(0,0,0,0.25);
     }
 
     body.sidebar-open .sidebar {
         left: 0;
     }
 
-    .mobile-overlay {
+    body.sidebar-open .overlay {
+        display: block;
         position: fixed;
         inset: 0;
         background: rgba(0,0,0,0.45);
-        z-index: 10;
-    }
-
-    body.sidebar-open .mobile-overlay {
-        display: block;
+        z-index: 20;
     }
 
     .mobile-menu {
@@ -637,70 +646,30 @@ input::placeholder {
     }
 
     .input-area {
-        padding: 9px 9px 11px;
+        padding: 9px;
     }
 
-    .message-content,
-    .message.user .message-content {
-        max-width: 94%;
-    }
-
-    .suggestions {
+    .cards,
+    .tool-grid {
         grid-template-columns: 1fr;
     }
 
-    .hero {
-        margin-top: 15px;
+    .hero h1 {
+        font-size: 31px;
     }
 
     .hero-logo {
-        width: 68px;
-        height: 68px;
-        border-radius: 21px;
-        font-size: 29px;
-    }
-
-    .hero h1 {
-        font-size: 30px;
-    }
-
-    .hero p {
-        font-size: 13px;
-    }
-
-    .top-title-logo {
-        display: none;
-    }
-
-    .top-title strong {
-        font-size: 14px;
-    }
-}
-
-@media (max-width: 430px) {
-
-    .top-actions .new-chat-top {
-        display: none;
-    }
-
-    .brand-text {
-        display: none;
+        width: 65px;
+        height: 65px;
     }
 
     .message-content,
     .message.user .message-content {
-        max-width: 97%;
+        max-width: 96%;
     }
 
-    .bubble {
-        font-size: 14px;
-        padding: 11px 13px;
-    }
-
-    .assistant-avatar {
-        width: 30px;
-        height: 30px;
-        flex-basis: 30px;
+    .page-title-logo {
+        display: none;
     }
 }
 </style>
@@ -711,242 +680,130 @@ input::placeholder {
 
 <div class="app">
 
-```
 <aside class="sidebar">
 
-    <div class="sidebar-brand">
-        <div class="sidebar-logo">T</div>
-        <div>
-            <strong>Tanmay AI</strong>
-            <span>Intelligent assistant</span>
-        </div>
+```
+<div class="brand">
+    <div class="logo">T</div>
+    <div>
+        <strong>Tanmay AI</strong>
+        <small>Professional AI assistant</small>
     </div>
+</div>
 
-    <button
-        class="new-chat-sidebar"
-        onclick="newChat()">
-        ＋ New Chat
-    </button>
+<button class="new-chat" onclick="newChat()">
+    ＋ New Chat
+</button>
 
-    <div class="sidebar-section">
+<div class="nav-label">Workspace</div>
 
-        <div class="sidebar-label">
-            Workspace
-        </div>
+<button class="nav-item active" id="nav-chat" onclick="showPage('chat')">
+    <span class="nav-icon">💬</span>
+    AI Chat
+</button>
 
-        <div class="sidebar-item active">
-            <span class="sidebar-icon">💬</span>
-            <span>AI Chat</span>
-        </div>
+<button class="nav-item" id="nav-explore" onclick="showPage('explore')">
+    <span class="nav-icon">✨</span>
+    Explore
+</button>
 
-        <div class="sidebar-item">
-            <span class="sidebar-icon">✨</span>
-            <span>Explore</span>
-        </div>
+<div class="nav-label">Tools</div>
 
-        <div class="sidebar-item">
-            <span class="sidebar-icon">📚</span>
-            <span>Learning</span>
-        </div>
+<button class="nav-item" id="nav-learning" onclick="showPage('learning')">
+    <span class="nav-icon">📚</span>
+    Learning
+</button>
 
+<button class="nav-item" id="nav-coding" onclick="showPage('coding')">
+    <span class="nav-icon">💻</span>
+    Coding
+</button>
+
+<button class="nav-item" id="nav-writing" onclick="showPage('writing')">
+    <span class="nav-icon">✍️</span>
+    Writing
+</button>
+
+<button class="nav-item" id="nav-ideas" onclick="showPage('ideas')">
+    <span class="nav-icon">💡</span>
+    Ideas
+</button>
+
+<div class="sidebar-bottom">
+    <div class="creator">
+        <span>Built for everyone</span>
+        <strong>Tanmay AI</strong>
     </div>
-
-    <div class="sidebar-section">
-
-        <div class="sidebar-label">
-            Built for
-        </div>
-
-        <div class="sidebar-item">
-            <span class="sidebar-icon">💻</span>
-            <span>Coding</span>
-        </div>
-
-        <div class="sidebar-item">
-            <span class="sidebar-icon">✍️</span>
-            <span>Writing</span>
-        </div>
-
-        <div class="sidebar-item">
-            <span class="sidebar-icon">💡</span>
-            <span>Ideas</span>
-        </div>
-
-    </div>
-
-    <div class="sidebar-bottom">
-
-        <div class="creator-card">
-            <small>Created with</small>
-            <strong>Tanmay AI</strong>
-        </div>
-
-    </div>
+</div>
+```
 
 </aside>
 
-<div
-    class="mobile-overlay"
-    onclick="closeSidebar()">
-</div>
+<div class="overlay" onclick="closeSidebar()"></div>
 
 <main class="main">
 
-    <header class="topbar">
+<header class="topbar">
 
-        <div class="top-title">
+```
+<div class="page-title">
 
-            <button
-                class="mobile-menu"
-                onclick="toggleSidebar()"
-                aria-label="Open menu">
-                ☰
-            </button>
+    <button class="mobile-menu" onclick="toggleSidebar()">
+        ☰
+    </button>
 
-            <div class="top-title-logo">
-                T
-            </div>
+    <div class="page-title-logo">T</div>
 
-            <div class="brand-text">
-                <strong>Tanmay AI</strong>
-                <small>AI assistant online</small>
-            </div>
-
-        </div>
-
-        <div class="top-actions">
-
-            <button
-                class="top-button"
-                onclick="toggleTheme()"
-                aria-label="Toggle theme">
-                ◐
-            </button>
-
-            <button
-                class="top-button new-chat-top"
-                onclick="newChat()">
-                ＋ New Chat
-            </button>
-
-        </div>
-
-    </header>
-
-    <div id="messages">
-
-        <div class="welcome" id="welcome">
-
-            <div class="hero">
-
-                <div class="hero-logo">
-                    T
-                </div>
-
-                <h1>
-                    Meet <span>Tanmay AI</span>
-                </h1>
-
-                <p>
-                    Your intelligent assistant for learning,
-                    coding, writing, ideas, and everyday questions.
-                    Ask anything and let's get started.
-                </p>
-
-            </div>
-
-            <div class="suggestions">
-
-                <button
-                    class="suggestion"
-                    onclick="useSuggestion('Explain a difficult topic to me step by step.')">
-
-                    <span class="suggestion-title">
-                        📚 Explain a topic
-                    </span>
-
-                    <span class="suggestion-text">
-                        Turn difficult concepts into simple explanations.
-                    </span>
-
-                </button>
-
-                <button
-                    class="suggestion"
-                    onclick="useSuggestion('Help me write something professionally.')">
-
-                    <span class="suggestion-title">
-                        ✍️ Help me write
-                    </span>
-
-                    <span class="suggestion-text">
-                        Create clear and professional writing.
-                    </span>
-
-                </button>
-
-                <button
-                    class="suggestion"
-                    onclick="useSuggestion('Help me understand this programming problem.')">
-
-                    <span class="suggestion-title">
-                        💻 Help with coding
-                    </span>
-
-                    <span class="suggestion-text">
-                        Understand programming and solve problems.
-                    </span>
-
-                </button>
-
-                <button
-                    class="suggestion"
-                    onclick="useSuggestion('Give me some useful ideas for a project.')">
-
-                    <span class="suggestion-title">
-                        💡 Get ideas
-                    </span>
-
-                    <span class="suggestion-text">
-                        Brainstorm creative project ideas.
-                    </span>
-
-                </button>
-
-            </div>
-
-        </div>
-
+    <div>
+        <strong id="pageTitle">Tanmay AI</strong>
+        <small id="pageSubtitle">AI assistant online</small>
     </div>
 
-    <div class="input-area">
+</div>
 
-        <div class="input-box">
+<div class="actions">
 
-            <input
-                id="userInput"
-                type="text"
-                placeholder="Message Tanmay AI..."
-                autocomplete="off"
-                maxlength="4000">
+    <button class="action-btn" onclick="toggleTheme()">
+        ◐
+    </button>
 
-            <button
-                id="sendButton"
-                onclick="sendMessage()"
-                aria-label="Send">
-                ➤
-            </button>
+    <button class="action-btn" onclick="newChat()">
+        ＋ New Chat
+    </button>
 
-        </div>
+</div>
+```
 
-        <div class="footer-note">
-            Tanmay AI can make mistakes. Check important information.
-        </div>
+</header>
 
-    </div>
+<div id="messages"></div>
+
+<div class="input-area">
+
+```
+<div class="input-box">
+
+    <input
+        id="userInput"
+        type="text"
+        placeholder="Message Tanmay AI..."
+        maxlength="4000"
+        autocomplete="off">
+
+    <button id="sendButton" onclick="sendMessage()">
+        ➤
+    </button>
+
+</div>
+
+<div class="note">
+    Tanmay AI can make mistakes. Check important information.
+</div>
+```
+
+</div>
 
 </main>
-```
 
 </div>
 
@@ -955,6 +812,335 @@ input::placeholder {
 const BACKEND_URL =
     "https://tanmay-ai-0jke.onrender.com";
 
+const pageInfo = {
+
+    chat: {
+        title: "Tanmay AI",
+        subtitle: "AI assistant online"
+    },
+
+    explore: {
+        title: "Explore",
+        subtitle: "Discover what Tanmay AI can do"
+    },
+
+    learning: {
+        title: "Learning",
+        subtitle: "Learn difficult topics more easily"
+    },
+
+    coding: {
+        title: "Coding",
+        subtitle: "Build, debug and understand code"
+    },
+
+    writing: {
+        title: "Writing",
+        subtitle: "Create clear and professional writing"
+    },
+
+    ideas: {
+        title: "Ideas",
+        subtitle: "Brainstorm and create"
+    }
+};
+
+
+/* PAGE SYSTEM */
+
+function showPage(page) {
+
+    closeSidebar();
+
+    document
+        .querySelectorAll(".nav-item")
+        .forEach(function(item) {
+            item.classList.remove("active");
+        });
+
+    const nav =
+        document.getElementById("nav-" + page);
+
+    if (nav) {
+        nav.classList.add("active");
+    }
+
+    document.getElementById("pageTitle").textContent =
+        pageInfo[page].title;
+
+    document.getElementById("pageSubtitle").textContent =
+        pageInfo[page].subtitle;
+
+    if (page === "chat") {
+        showHome();
+    }
+
+    if (page === "explore") {
+        showExplore();
+    }
+
+    if (page === "learning") {
+        showLearning();
+    }
+
+    if (page === "coding") {
+        showCoding();
+    }
+
+    if (page === "writing") {
+        showWriting();
+    }
+
+    if (page === "ideas") {
+        showIdeas();
+    }
+}
+
+
+/* HOME */
+
+function showHome() {
+
+    const messages =
+        document.getElementById("messages");
+
+    messages.innerHTML = `
+        <div class="home">
+
+            <div class="hero">
+
+                <div class="hero-logo">T</div>
+
+                <h1>
+                    Welcome to <span>Tanmay AI</span>
+                </h1>
+
+                <p>
+                    Your intelligent assistant for learning,
+                    coding, writing, ideas and everyday questions.
+                </p>
+
+            </div>
+
+            <div class="cards">
+
+                <button class="card"
+                    onclick="promptAI('Explain a difficult topic to me step by step.')">
+                    <div class="card-icon">📚</div>
+                    <strong>Explain a topic</strong>
+                    <span>Make difficult concepts easier to understand.</span>
+                </button>
+
+                <button class="card"
+                    onclick="promptAI('Help me write something professionally.')">
+                    <div class="card-icon">✍️</div>
+                    <strong>Help me write</strong>
+                    <span>Create clear and professional writing.</span>
+                </button>
+
+                <button class="card"
+                    onclick="promptAI('Help me understand this programming problem.')">
+                    <div class="card-icon">💻</div>
+                    <strong>Help with coding</strong>
+                    <span>Understand programming and solve problems.</span>
+                </button>
+
+                <button class="card"
+                    onclick="promptAI('Give me some useful ideas for a project.')">
+                    <div class="card-icon">💡</div>
+                    <strong>Get ideas</strong>
+                    <span>Brainstorm creative ideas for your next project.</span>
+                </button>
+
+            </div>
+        </div>
+    `;
+}
+
+
+/* EXPLORE */
+
+function showExplore() {
+
+    renderSection(
+        "✨",
+        "Explore Tanmay AI",
+        "Choose something you would like Tanmay AI to help you with.",
+        [
+            ["📚", "Learn something", "Explain any topic clearly.", "Explain a difficult topic to me step by step."],
+            ["💻", "Solve a coding problem", "Understand code and programming concepts.", "Help me understand a programming problem."],
+            ["✍️", "Improve my writing", "Make your writing clearer and better.", "Help me improve my writing."],
+            ["💡", "Brainstorm ideas", "Generate useful project and creative ideas.", "Give me 10 useful project ideas."],
+            ["🧠", "Study with me", "Create a study explanation or quiz.", "Teach me a topic like a patient tutor."],
+            ["🔎", "Ask a question", "Ask Tanmay AI anything.", "I have a question for you."]
+        ]
+    );
+}
+
+
+/* LEARNING */
+
+function showLearning() {
+
+    renderSection(
+        "📚",
+        "Learning",
+        "Use Tanmay AI as your personal study assistant.",
+        [
+            ["🧠", "Teach me a topic", "Learn a concept step by step.", "Teach me a difficult topic step by step."],
+            ["📝", "Make revision notes", "Turn a topic into quick revision notes.", "Make concise revision notes for a topic."],
+            ["❓", "Create questions", "Practice with questions.", "Create 10 practice questions for a topic."],
+            ["🎯", "Test me", "Take a short quiz.", "Quiz me on a topic."],
+            ["🔬", "Explain science", "Understand science concepts.", "Explain a science concept simply."],
+            ["➗", "Solve maths", "Work through a maths problem.", "Help me solve a maths problem step by step."]
+        ]
+    );
+}
+
+
+/* CODING */
+
+function showCoding() {
+
+    renderSection(
+        "💻",
+        "Coding",
+        "Get help understanding programming and building projects.",
+        [
+            ["🐞", "Debug code", "Find and explain coding errors.", "Help me debug my code."],
+            ["📖", "Explain code", "Understand what code does.", "Explain this code to me simply."],
+            ["🏗️", "Build a project", "Plan a programming project.", "Help me plan a programming project."],
+            ["⚡", "Improve code", "Make code cleaner and easier to understand.", "How can I improve my code?"],
+            ["🧩", "Solve a problem", "Work through a programming problem.", "Help me solve a programming problem."],
+            ["🚀", "Learn programming", "Start learning programming concepts.", "Teach me programming from the basics."]
+        ]
+    );
+}
+
+
+/* WRITING */
+
+function showWriting() {
+
+    renderSection(
+        "✍️",
+        "Writing",
+        "Create, improve and organize your writing.",
+        [
+            ["📧", "Write an email", "Create a professional email.", "Help me write a professional email."],
+            ["📝", "Improve text", "Make writing clearer and better.", "Improve this piece of writing."],
+            ["📄", "Write an essay", "Plan and draft an essay.", "Help me write an essay."],
+            ["🎤", "Write a speech", "Create a clear speech.", "Help me write a speech."],
+            ["📱", "Social post", "Create a social media post.", "Help me write a social media post."],
+            ["💼", "Professional writing", "Make your writing sound professional.", "Make this writing sound professional."]
+        ]
+    );
+}
+
+
+/* IDEAS */
+
+function showIdeas() {
+
+    renderSection(
+        "💡",
+        "Ideas",
+        "Brainstorm useful and creative ideas with Tanmay AI.",
+        [
+            ["🚀", "Project ideas", "Find ideas for your next project.", "Give me 10 project ideas."],
+            ["💻", "AI ideas", "Brainstorm AI project concepts.", "Give me some AI project ideas."],
+            ["🎮", "Game ideas", "Create game concepts.", "Give me some original game ideas."],
+            ["📱", "App ideas", "Brainstorm useful app ideas.", "Give me useful app ideas."],
+            ["🎨", "Creative ideas", "Generate creative concepts.", "Give me some creative ideas."],
+            ["🧠", "Solve a problem", "Brainstorm ways to solve a problem.", "Help me brainstorm solutions to a problem."]
+        ]
+    );
+}
+
+
+/* SECTION RENDERER */
+
+function renderSection(icon, title, description, tools) {
+
+    const messages =
+        document.getElementById("messages");
+
+    messages.innerHTML = "";
+
+    const page =
+        document.createElement("div");
+
+    page.className = "section-page";
+
+    const header =
+        document.createElement("div");
+
+    header.className = "section-header";
+
+    header.innerHTML =
+        "<div class='section-icon'>" +
+        icon +
+        "</div>" +
+        "<h2>" +
+        title +
+        "</h2>" +
+        "<p>" +
+        description +
+        "</p>";
+
+    const grid =
+        document.createElement("div");
+
+    grid.className = "tool-grid";
+
+    tools.forEach(function(tool) {
+
+        const button =
+            document.createElement("button");
+
+        button.className = "tool";
+
+        button.innerHTML =
+            "<strong>" +
+            tool[0] +
+            " " +
+            tool[1] +
+            "</strong>" +
+            "<span>" +
+            tool[2] +
+            "</span>";
+
+        button.onclick =
+            function() {
+                promptAI(tool[3]);
+            };
+
+        grid.appendChild(button);
+    });
+
+    page.appendChild(header);
+    page.appendChild(grid);
+
+    messages.appendChild(page);
+}
+
+
+/* SEND PROMPT */
+
+function promptAI(text) {
+
+    showPage("chat");
+
+    const input =
+        document.getElementById("userInput");
+
+    input.value = text;
+
+    input.focus();
+}
+
+
+/* CHAT */
 
 async function sendMessage() {
 
@@ -971,9 +1157,11 @@ async function sendMessage() {
         return;
     }
 
-    closeSidebar();
+    showPage("chat");
 
-    removeWelcome();
+    document
+        .getElementById("messages")
+        .innerHTML = "";
 
     addMessage(text, "user");
 
@@ -982,7 +1170,7 @@ async function sendMessage() {
     button.disabled = true;
 
     const thinking =
-        addThinkingMessage();
+        addThinking();
 
     try {
 
@@ -1007,15 +1195,17 @@ async function sendMessage() {
 
         if (!response.ok) {
             throw new Error(
-                data.detail || "Request failed."
+                data.detail || "Request failed"
             );
         }
 
         thinking.remove();
 
         addMessage(
-            data.reply ||
-            "I couldn't generate a response.",
+            cleanResponse(
+                data.reply ||
+                "I couldn't generate a response."
+            ),
             "assistant"
         );
 
@@ -1028,10 +1218,7 @@ async function sendMessage() {
             "assistant"
         );
 
-        console.error(
-            "Tanmay AI error:",
-            error
-        );
+        console.error(error);
 
     } finally {
 
@@ -1041,6 +1228,27 @@ async function sendMessage() {
     }
 }
 
+
+/* CLEAN RESPONSE */
+
+function cleanResponse(text) {
+
+    if (!text) {
+        return "";
+    }
+
+    return text
+        .replace(/^#{1,6}\s*/gm, "")
+        .replace(/\*\*(.*?)\*\*/g, "$1")
+        .replace(/\*(.*?)\*/g, "$1")
+        .replace(/`{1,3}/g, "")
+        .replace(/^\s*[-|]\s*/gm, "")
+        .replace(/\n{3,}/g, "\n\n")
+        .trim();
+}
+
+
+/* MESSAGE */
 
 function addMessage(text, type) {
 
@@ -1065,7 +1273,7 @@ function addMessage(text, type) {
             document.createElement("div");
 
         avatar.className =
-            "assistant-avatar";
+            "avatar";
 
         avatar.textContent = "T";
 
@@ -1087,13 +1295,15 @@ function addMessage(text, type) {
 
     messages.appendChild(message);
 
-    scrollToBottom();
+    scrollBottom();
 
     return message;
 }
 
 
-function addThinkingMessage() {
+/* THINKING */
+
+function addThinking() {
 
     const messages =
         document.getElementById("messages");
@@ -1114,7 +1324,7 @@ function addThinkingMessage() {
         document.createElement("div");
 
     avatar.className =
-        "assistant-avatar";
+        "avatar";
 
     avatar.textContent = "T";
 
@@ -1130,162 +1340,29 @@ function addThinkingMessage() {
             document.createElement("span");
 
         dot.className =
-            "thinking-dot";
+            "dot";
 
         bubble.appendChild(dot);
     }
 
     content.appendChild(avatar);
-
     content.appendChild(bubble);
 
     message.appendChild(content);
 
     messages.appendChild(message);
 
-    scrollToBottom();
+    scrollBottom();
 
     return message;
 }
 
 
-function removeWelcome() {
-
-    const welcome =
-        document.getElementById("welcome");
-
-    if (welcome) {
-        welcome.remove();
-    }
-}
-
-
-function useSuggestion(text) {
-
-    const input =
-        document.getElementById("userInput");
-
-    input.value =
-        text;
-
-    input.focus();
-}
-
+/* NEW CHAT */
 
 function newChat() {
 
-    const messages =
-        document.getElementById("messages");
-
-    messages.innerHTML = "";
-
-    const welcome =
-        document.createElement("div");
-
-    welcome.className = "welcome";
-    welcome.id = "welcome";
-
-    const hero =
-        document.createElement("div");
-
-    hero.className = "hero";
-
-    const logo =
-        document.createElement("div");
-
-    logo.className = "hero-logo";
-    logo.textContent = "T";
-
-    const heading =
-        document.createElement("h1");
-
-    heading.textContent =
-        "Meet Tanmay AI";
-
-    const paragraph =
-        document.createElement("p");
-
-    paragraph.textContent =
-        "Your intelligent assistant for learning, coding, writing, ideas, and everyday questions. Ask anything and let's get started.";
-
-    hero.appendChild(logo);
-    hero.appendChild(heading);
-    hero.appendChild(paragraph);
-
-    const suggestions =
-        document.createElement("div");
-
-    suggestions.className =
-        "suggestions";
-
-    const options = [
-        [
-            "📚 Explain a topic",
-            "Turn difficult concepts into simple explanations.",
-            "Explain a difficult topic to me step by step."
-        ],
-        [
-            "✍️ Help me write",
-            "Create clear and professional writing.",
-            "Help me write something professionally."
-        ],
-        [
-            "💻 Help with coding",
-            "Understand programming and solve problems.",
-            "Help me understand this programming problem."
-        ],
-        [
-            "💡 Get ideas",
-            "Brainstorm creative project ideas.",
-            "Give me some useful ideas for a project."
-        ]
-    ];
-
-    options.forEach(function(option) {
-
-        const button =
-            document.createElement("button");
-
-        button.className =
-            "suggestion";
-
-        const title =
-            document.createElement("span");
-
-        title.className =
-            "suggestion-title";
-
-        title.textContent =
-            option[0];
-
-        const description =
-            document.createElement("span");
-
-        description.className =
-            "suggestion-text";
-
-        description.textContent =
-            option[1];
-
-        button.appendChild(title);
-        button.appendChild(description);
-
-        button.addEventListener(
-            "click",
-            function() {
-                useSuggestion(option[2]);
-            }
-        );
-
-        suggestions.appendChild(button);
-    });
-
-    welcome.appendChild(hero);
-    welcome.appendChild(suggestions);
-
-    messages.appendChild(welcome);
-
-    closeSidebar();
+    showPage("chat");
 
     document
         .getElementById("userInput")
@@ -1293,30 +1370,22 @@ function newChat() {
 }
 
 
+/* THEME */
+
 function toggleTheme() {
 
     document.body.classList.toggle("dark");
 
-    const isDark =
-        document.body.classList.contains("dark");
-
     localStorage.setItem(
         "tanmay-theme",
-        isDark ? "dark" : "light"
+        document.body.classList.contains("dark")
+            ? "dark"
+            : "light"
     );
 }
 
 
-function loadTheme() {
-
-    const saved =
-        localStorage.getItem("tanmay-theme");
-
-    if (saved === "dark") {
-        document.body.classList.add("dark");
-    }
-}
-
+/* MOBILE SIDEBAR */
 
 function toggleSidebar() {
 
@@ -1334,7 +1403,9 @@ function closeSidebar() {
 }
 
 
-function scrollToBottom() {
+/* SCROLL */
+
+function scrollBottom() {
 
     const messages =
         document.getElementById("messages");
@@ -1343,6 +1414,8 @@ function scrollToBottom() {
         messages.scrollHeight;
 }
 
+
+/* ENTER */
 
 document
     .getElementById("userInput")
@@ -1358,7 +1431,19 @@ document
     );
 
 
-loadTheme();
+/* LOAD THEME */
+
+if (
+    localStorage.getItem("tanmay-theme")
+    === "dark"
+) {
+    document.body.classList.add("dark");
+}
+
+
+/* START */
+
+showHome();
 
 </script>
 
