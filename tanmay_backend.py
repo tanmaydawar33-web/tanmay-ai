@@ -1,5 +1,5 @@
 
-from fastapi import FastAPI, HTTPException, Header
+from fastapi import FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from groq import Groq
@@ -76,13 +76,7 @@ def home():
 
 
 @app.post("/chat")
-def chat(request: ChatRequest, x_api_key: str = Header(None)):
-
-    if x_api_key != TANMAY_API_KEY:
-        raise HTTPException(
-            status_code=401,
-            detail="Invalid or missing API key."
-        )
+def chat(request: ChatRequest):
 
     message = request.message.strip()
 
