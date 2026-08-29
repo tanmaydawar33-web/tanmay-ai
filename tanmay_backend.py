@@ -135,3 +135,11 @@ def chat(request: ChatRequest):
             status_code=500,
             detail=f"Tanmay AI error: {repr(error)}"
         )
+@app.get("/api")
+def api_info():
+    return {
+        "name": "Tanmay AI API",
+        "status": "online",
+        "version": "1.0",
+        "endpoint": "/chat"
+    }
