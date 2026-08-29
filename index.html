@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="theme-color" content="#111827">
+    <meta name="theme-color" content="#0f172a">
+    <meta name="description" content="Tanmay AI - Your professional AI assistant">
     <title>Tanmay AI</title>
 
 ```
@@ -18,9 +19,9 @@
         margin: 0;
         width: 100%;
         height: 100%;
-        font-family: Arial, sans-serif;
-        background: #f5f7fb;
-        color: #1f2937;
+        font-family: Inter, Arial, sans-serif;
+        background: #f8fafc;
+        color: #0f172a;
     }
 
     body {
@@ -29,46 +30,155 @@
         align-items: center;
     }
 
+    /* APP */
+
     .app {
-        width: min(950px, 96vw);
+        width: min(1100px, 96vw);
         height: min(900px, 94vh);
         background: white;
-        border-radius: 20px;
-        box-shadow: 0 12px 45px rgba(0, 0, 0, 0.10);
+        border: 1px solid #e2e8f0;
+        border-radius: 22px;
+        box-shadow: 0 20px 60px rgba(15, 23, 42, 0.10);
         display: flex;
         flex-direction: column;
         overflow: hidden;
     }
 
+    /* HEADER */
+
     header {
-        padding: 20px 24px;
-        border-bottom: 1px solid #e5e7eb;
+        height: 72px;
+        padding: 0 22px;
+        border-bottom: 1px solid #e2e8f0;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
         background: white;
     }
 
-    header h1 {
+    .brand {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+    }
+
+    .logo {
+        width: 42px;
+        height: 42px;
+        border-radius: 12px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0f172a;
+        color: white;
+        font-size: 21px;
+    }
+
+    .brand-text h1 {
         margin: 0;
-        font-size: 24px;
+        font-size: 19px;
         font-weight: 700;
     }
 
-    header p {
-        margin: 6px 0 0;
-        color: #6b7280;
-        font-size: 14px;
+    .brand-text p {
+        margin: 2px 0 0;
+        font-size: 12px;
+        color: #64748b;
     }
+
+    .new-chat {
+        min-height: 40px;
+        padding: 0 14px;
+        border: 1px solid #cbd5e1;
+        border-radius: 10px;
+        background: white;
+        color: #0f172a;
+        cursor: pointer;
+        font-size: 13px;
+        font-weight: 600;
+    }
+
+    .new-chat:hover {
+        background: #f8fafc;
+    }
+
+    /* CHAT AREA */
 
     #messages {
         flex: 1;
-        padding: 24px;
         overflow-y: auto;
+        padding: 34px 24px;
         scroll-behavior: smooth;
     }
 
-    .message {
-        margin-bottom: 18px;
+    /* WELCOME */
+
+    .welcome {
+        max-width: 650px;
+        margin: 70px auto 40px;
+        text-align: center;
+    }
+
+    .welcome-icon {
+        width: 64px;
+        height: 64px;
+        margin: 0 auto 18px;
+        border-radius: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #0f172a;
+        color: white;
+        font-size: 30px;
+    }
+
+    .welcome h2 {
+        margin: 0;
+        font-size: 30px;
+        letter-spacing: -0.5px;
+    }
+
+    .welcome p {
+        margin: 10px auto 0;
+        max-width: 500px;
+        color: #64748b;
         line-height: 1.6;
+        font-size: 15px;
+    }
+
+    .suggestions {
+        margin-top: 26px;
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+
+    .suggestion {
+        padding: 14px;
+        text-align: left;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        background: white;
+        cursor: pointer;
+        color: #334155;
+        font-size: 13px;
+    }
+
+    .suggestion:hover {
+        background: #f8fafc;
+        border-color: #cbd5e1;
+    }
+
+    /* MESSAGES */
+
+    .message {
+        display: flex;
+        margin-bottom: 22px;
         animation: appear 0.2s ease;
+    }
+
+    .message.user {
+        justify-content: flex-end;
     }
 
     @keyframes appear {
@@ -83,76 +193,159 @@
         }
     }
 
-    .user {
-        text-align: right;
+    .message-content {
+        display: flex;
+        align-items: flex-start;
+        gap: 10px;
+        max-width: 82%;
+    }
+
+    .avatar {
+        width: 32px;
+        height: 32px;
+        flex: 0 0 32px;
+        border-radius: 9px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background: #e2e8f0;
+        font-size: 16px;
+    }
+
+    .user .avatar {
+        display: none;
     }
 
     .bubble {
-        display: inline-block;
-        max-width: 78%;
-        padding: 12px 16px;
-        border-radius: 16px;
+        padding: 12px 15px;
+        border-radius: 15px;
+        line-height: 1.6;
         white-space: pre-wrap;
         overflow-wrap: anywhere;
+        font-size: 15px;
+    }
+
+    .assistant .bubble {
+        background: #f1f5f9;
+        color: #1e293b;
+        border-bottom-left-radius: 5px;
     }
 
     .user .bubble {
-        background: #111827;
+        background: #0f172a;
         color: white;
         border-bottom-right-radius: 5px;
     }
 
-    .assistant .bubble {
-        background: #f3f4f6;
-        color: #1f2937;
-        border-bottom-left-radius: 5px;
+    /* THINKING */
+
+    .thinking {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 14px 16px !important;
     }
 
+    .dot {
+        width: 6px;
+        height: 6px;
+        border-radius: 50%;
+        background: #64748b;
+        animation: bounce 1.2s infinite ease-in-out;
+    }
+
+    .dot:nth-child(2) {
+        animation-delay: 0.15s;
+    }
+
+    .dot:nth-child(3) {
+        animation-delay: 0.3s;
+    }
+
+    @keyframes bounce {
+        0%, 80%, 100% {
+            transform: translateY(0);
+            opacity: 0.5;
+        }
+
+        40% {
+            transform: translateY(-4px);
+            opacity: 1;
+        }
+    }
+
+    /* INPUT */
+
     .input-area {
-        display: flex;
-        gap: 10px;
-        padding: 16px;
-        border-top: 1px solid #e5e7eb;
+        padding: 14px 18px 18px;
+        border-top: 1px solid #e2e8f0;
         background: white;
+    }
+
+    .input-box {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+        max-width: 900px;
+        margin: auto;
+        padding: 5px;
+        border: 1px solid #cbd5e1;
+        border-radius: 15px;
+        background: white;
+    }
+
+    .input-box:focus-within {
+        border-color: #64748b;
     }
 
     input {
         flex: 1;
         min-width: 0;
-        padding: 14px 16px;
-        border: 1px solid #d1d5db;
-        border-radius: 14px;
-        outline: none;
-        font-size: 16px;
-        background: #fff;
-    }
-
-    input:focus {
-        border-color: #6b7280;
-    }
-
-    button {
         border: none;
-        border-radius: 14px;
-        padding: 0 22px;
-        min-height: 48px;
-        background: #111827;
+        outline: none;
+        padding: 11px 12px;
+        background: transparent;
+        color: #0f172a;
+        font-size: 15px;
+    }
+
+    input::placeholder {
+        color: #94a3b8;
+    }
+
+    #sendButton {
+        width: 44px;
+        height: 44px;
+        padding: 0;
+        border: none;
+        border-radius: 11px;
+        background: #0f172a;
         color: white;
         cursor: pointer;
-        font-size: 15px;
-        font-weight: 600;
+        font-size: 18px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
     }
 
-    button:hover {
+    #sendButton:hover {
         opacity: 0.9;
     }
 
-    button:disabled {
-        opacity: 0.6;
+    #sendButton:disabled {
+        opacity: 0.55;
         cursor: wait;
     }
 
-    /* Mobile */
+    .disclaimer {
+        text-align: center;
+        margin-top: 8px;
+        color: #94a3b8;
+        font-size: 11px;
+    }
+
+    /* MOBILE */
+
     @media (max-width: 600px) {
 
         body {
@@ -165,45 +358,96 @@
             height: 100dvh;
             min-height: 100dvh;
             border-radius: 0;
+            border: none;
             box-shadow: none;
         }
 
         header {
-            padding: 16px;
+            height: 64px;
+            padding: 0 13px;
         }
 
-        header h1 {
-            font-size: 21px;
+        .logo {
+            width: 38px;
+            height: 38px;
+            border-radius: 10px;
+            font-size: 19px;
         }
 
-        header p {
-            font-size: 13px;
+        .brand {
+            gap: 9px;
+        }
+
+        .brand-text h1 {
+            font-size: 17px;
+        }
+
+        .brand-text p {
+            font-size: 11px;
+        }
+
+        .new-chat {
+            min-height: 37px;
+            padding: 0 10px;
+            font-size: 12px;
         }
 
         #messages {
-            padding: 16px 12px;
+            padding: 20px 12px;
         }
 
-        .message {
-            margin-bottom: 14px;
+        .welcome {
+            margin: 45px auto 25px;
+        }
+
+        .welcome-icon {
+            width: 58px;
+            height: 58px;
+            font-size: 27px;
+        }
+
+        .welcome h2 {
+            font-size: 25px;
+        }
+
+        .welcome p {
+            font-size: 14px;
+            padding: 0 8px;
+        }
+
+        .suggestions {
+            grid-template-columns: 1fr;
+            margin-top: 20px;
+        }
+
+        .message-content {
+            max-width: 91%;
         }
 
         .bubble {
-            max-width: 88%;
-            padding: 11px 14px;
+            font-size: 14px;
+            padding: 10px 13px;
         }
 
         .input-area {
-            padding: 10px;
-            gap: 8px;
+            padding: 9px 9px 11px;
+        }
+
+        .input-box {
+            border-radius: 13px;
         }
 
         input {
-            padding: 12px 13px;
+            font-size: 16px;
         }
 
-        button {
-            padding: 0 16px;
+        #sendButton {
+            width: 42px;
+            height: 42px;
+        }
+
+        .disclaimer {
+            font-size: 10px;
         }
     }
 </style>
@@ -217,31 +461,99 @@
 
 ```
 <header>
-    <h1>🤖 Tanmay AI</h1>
-    <p>Your professional AI assistant</p>
+    <div class="brand">
+        <div class="logo">🤖</div>
+
+        <div class="brand-text">
+            <h1>Tanmay AI</h1>
+            <p>Professional AI assistant</p>
+        </div>
+    </div>
+
+    <button class="new-chat" onclick="newChat()">
+        + New Chat
+    </button>
 </header>
 
 <div id="messages">
-    <div class="message assistant">
-        <span class="bubble">Hello! I'm Tanmay AI. How can I help you today?</span>
+
+    <div class="welcome" id="welcome">
+
+        <div class="welcome-icon">🤖</div>
+
+        <h2>How can I help you?</h2>
+
+        <p>
+            Ask Tanmay AI anything. Get help with learning,
+            programming, writing, ideas, and general questions.
+        </p>
+
+        <div class="suggestions">
+
+            <button
+                class="suggestion"
+                onclick="useSuggestion('Explain a difficult topic to me step by step.')">
+                📚 Explain a topic
+            </button>
+
+            <button
+                class="suggestion"
+                onclick="useSuggestion('Help me write something professionally.')">
+                ✍️ Help me write
+            </button>
+
+            <button
+                class="suggestion"
+                onclick="useSuggestion('Help me understand this programming problem.')">
+                💻 Help with coding
+            </button>
+
+            <button
+                class="suggestion"
+                onclick="useSuggestion('Give me some useful ideas for a project.')">
+                💡 Give me ideas
+            </button>
+
+        </div>
+
     </div>
+
 </div>
 
 <div class="input-area">
-    <input
-        id="userInput"
-        type="text"
-        placeholder="Message Tanmay AI..."
-        autocomplete="off"
-    >
-    <button id="sendButton" onclick="sendMessage()">Send</button>
+
+    <div class="input-box">
+
+        <input
+            id="userInput"
+            type="text"
+            placeholder="Message Tanmay AI..."
+            autocomplete="off"
+            maxlength="4000"
+        >
+
+        <button
+            id="sendButton"
+            onclick="sendMessage()"
+            aria-label="Send message">
+            ➤
+        </button>
+
+    </div>
+
+    <div class="disclaimer">
+        Tanmay AI can make mistakes. Check important information.
+    </div>
+
 </div>
 ```
 
 </div>
 
 <script>
+
 const BACKEND_URL = "https://tanmay-ai-0jke.onrender.com";
+
 
 async function sendMessage() {
 
@@ -249,18 +561,19 @@ async function sendMessage() {
     const button = document.getElementById("sendButton");
     const text = input.value.trim();
 
-    if (!text || button.disabled) return;
+    if (!text || button.disabled) {
+        return;
+    }
+
+    removeWelcome();
 
     addMessage(text, "user");
 
     input.value = "";
-    button.disabled = true;
-    button.textContent = "Thinking...";
 
-    const thinking = addMessage(
-        "Tanmay AI is thinking...",
-        "assistant"
-    );
+    button.disabled = true;
+
+    const thinking = addThinkingMessage();
 
     try {
 
@@ -268,9 +581,11 @@ async function sendMessage() {
             BACKEND_URL + "/chat",
             {
                 method: "POST",
+
                 headers: {
                     "Content-Type": "application/json"
                 },
+
                 body: JSON.stringify({
                     message: text
                 })
@@ -285,24 +600,32 @@ async function sendMessage() {
             );
         }
 
-        thinking.querySelector(".bubble").textContent =
-            data.reply ||
-            "I couldn't generate a response.";
+        thinking.remove();
+
+        addMessage(
+            data.reply || "I couldn't generate a response.",
+            "assistant"
+        );
 
     } catch (error) {
 
-        thinking.querySelector(".bubble").textContent =
-            "Sorry, Tanmay AI could not connect to the AI service.";
+        thinking.remove();
 
-        console.error(error);
+        addMessage(
+            "Sorry, Tanmay AI could not connect to the AI service. Please try again.",
+            "assistant"
+        );
+
+        console.error("Tanmay AI error:", error);
 
     } finally {
 
         button.disabled = false;
-        button.textContent = "Send";
+
         input.focus();
     }
 }
+
 
 function addMessage(text, type) {
 
@@ -315,20 +638,174 @@ function addMessage(text, type) {
     message.className =
         "message " + type;
 
+    const content =
+        document.createElement("div");
+
+    content.className =
+        "message-content";
+
+    if (type === "assistant") {
+
+        const avatar =
+            document.createElement("div");
+
+        avatar.className = "avatar";
+
+        avatar.textContent = "🤖";
+
+        content.appendChild(avatar);
+    }
+
     const bubble =
-        document.createElement("span");
+        document.createElement("div");
 
     bubble.className = "bubble";
+
     bubble.textContent = text;
 
-    message.appendChild(bubble);
+    content.appendChild(bubble);
+
+    message.appendChild(content);
+
     messages.appendChild(message);
 
-    messages.scrollTop =
-        messages.scrollHeight;
+    scrollToBottom();
 
     return message;
 }
+
+
+function addThinkingMessage() {
+
+    const messages =
+        document.getElementById("messages");
+
+    const message =
+        document.createElement("div");
+
+    message.className =
+        "message assistant";
+
+    const content =
+        document.createElement("div");
+
+    content.className =
+        "message-content";
+
+    const avatar =
+        document.createElement("div");
+
+    avatar.className = "avatar";
+
+    avatar.textContent = "🤖";
+
+    const bubble =
+        document.createElement("div");
+
+    bubble.className =
+        "bubble thinking";
+
+    bubble.innerHTML =
+        '<span class="dot"></span>' +
+        '<span class="dot"></span>' +
+        '<span class="dot"></span>';
+
+    content.appendChild(avatar);
+    content.appendChild(bubble);
+
+    message.appendChild(content);
+
+    messages.appendChild(message);
+
+    scrollToBottom();
+
+    return message;
+}
+
+
+function removeWelcome() {
+
+    const welcome =
+        document.getElementById("welcome");
+
+    if (welcome) {
+        welcome.remove();
+    }
+}
+
+
+function useSuggestion(text) {
+
+    const input =
+        document.getElementById("userInput");
+
+    input.value = text;
+
+    input.focus();
+}
+
+
+function newChat() {
+
+    const messages =
+        document.getElementById("messages");
+
+    messages.innerHTML = `
+        <div class="welcome" id="welcome">
+
+            <div class="welcome-icon">🤖</div>
+
+            <h2>How can I help you?</h2>
+
+            <p>
+                Ask Tanmay AI anything. Get help with learning,
+                programming, writing, ideas, and general questions.
+            </p>
+
+            <div class="suggestions">
+
+                <button
+                    class="suggestion"
+                    onclick="useSuggestion('Explain a difficult topic to me step by step.')">
+                    📚 Explain a topic
+                </button>
+
+                <button
+                    class="suggestion"
+                    onclick="useSuggestion('Help me write something professionally.')">
+                    ✍️ Help me write
+                </button>
+
+                <button
+                    class="suggestion"
+                    onclick="useSuggestion('Help me understand this programming problem.')">
+                    💻 Help with coding
+                </button>
+
+                <button
+                    class="suggestion"
+                    onclick="useSuggestion('Give me some useful ideas for a project.')">
+                    💡 Give me ideas
+                </button>
+
+            </div>
+
+        </div>
+    `;
+
+    document.getElementById("userInput").focus();
+}
+
+
+function scrollToBottom() {
+
+    const messages =
+        document.getElementById("messages");
+
+    messages.scrollTop =
+        messages.scrollHeight;
+}
+
 
 document
     .getElementById("userInput")
@@ -342,6 +819,7 @@ document
 
         }
     );
+
 </script>
 
 </body>
